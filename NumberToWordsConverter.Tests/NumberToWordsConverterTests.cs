@@ -26,8 +26,23 @@ public class NumberToWordsConverterTests
     [InlineData("1234", "ONE THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND ZERO CENTS")]
     public void ConvertToWords_ValidAmounts_ReturnsExpectedWords(string amount, string expected)
     {
+        //act
         var result = _converter.ConvertToWords(amount);
 
+        //assert
         Assert.Equal(expected, result, ignoreCase: true);
+    }
+
+    [Theory]
+    [InlineData("invalid")]
+    [InlineData("123.sfg")]
+    [InlineData("llv.223")]
+    public void InvalidAmountsThrowsArgumentException(string amount)
+    {
+        //act
+        var exception = Assert.Throws<ArgumentException>(() => _converter.ConvertToWords(amount));
+
+        //assert
+        Assert.Equal("Amount must be a valid numeric value. (Parameter 'amount')", exception.Message);
     }
 }

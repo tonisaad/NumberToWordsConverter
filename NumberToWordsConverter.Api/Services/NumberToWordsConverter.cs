@@ -21,7 +21,11 @@ public class NumberToWordsConverter : INumberToWordsConverter
         }
         
         var parts = amount.Split('.');
-        var dollars = int.Parse(parts[0]);
+        if (parts.Length > 2 || !int.TryParse(parts[0], out var dollars))
+        {
+            throw new ArgumentException("Amount must be a valid numeric value.", nameof(amount));
+        }
+
         var cents = 0;
         if (parts.Length > 1)
         {
@@ -34,7 +38,10 @@ public class NumberToWordsConverter : INumberToWordsConverter
             {
                 centsPart = centsPart.Substring(0, 2);
             }
-            cents = int.Parse(centsPart);
+            if (!int.TryParse(centsPart, out cents))
+            {
+                throw new ArgumentException("Amount must be a valid numeric value.", nameof(amount));
+            }
         }
         
         var dollarWords = ConvertWholeNumber(dollars);
