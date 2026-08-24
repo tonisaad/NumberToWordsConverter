@@ -21,7 +21,9 @@ public class NumberToWordsConverterTests
     [InlineData("123", "ONE HUNDRED AND TWENTY-THREE DOLLARS AND ZERO CENTS")]
     [InlineData("123.45", "ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS")]
     [InlineData("133.50", "ONE HUNDRED AND THIRTY-THREE DOLLARS AND FIFTY CENTS")]
+    [InlineData("10.456", "TEN DOLLARS AND FORTY-FIVE CENTS")]
     [InlineData("143.3", "ONE HUNDRED AND FORTY-THREE DOLLARS AND THIRTY CENTS")]
+    [InlineData("1234", "ONE THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND ZERO CENTS")]
     public void ConvertToWords_ValidAmounts_ReturnsExpectedWords(string amount, string expected)
     {
         var result = _converter.ConvertToWords(amount);

@@ -1,10 +1,5 @@
 @NumberToWordsConverter.Api_HostAddress = http://localhost:5188
 
-GET {{NumberToWordsConverter.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
-
 POST {{NumberToWordsConverter.Api_HostAddress}}/api/converter
 Content-Type: application/json
 
