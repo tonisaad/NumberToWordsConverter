@@ -15,9 +15,13 @@ public class NumberToWordsConverterTests
     [Theory]
     [InlineData("0", "ZERO DOLLARS AND ZERO CENTS")]
     [InlineData("5", "FIVE DOLLARS AND ZERO CENTS")]
-    [InlineData("14", "Fourteen DOLLARS AND ZERO CENTS")]
-    [InlineData("42", "FORTY TWO DOLLARS AND ZERO CENTS")]
-    [InlineData("123", "ONE HUNDRED AND TWENTY THREE DOLLARS AND ZERO CENTS")]
+    [InlineData("14", "FOURTEEN DOLLARS AND ZERO CENTS")]
+    [InlineData("20", "TWENTY DOLLARS AND ZERO CENTS")]
+    [InlineData("42", "FORTY-TWO DOLLARS AND ZERO CENTS")]
+    [InlineData("123", "ONE HUNDRED AND TWENTY-THREE DOLLARS AND ZERO CENTS")]
+    [InlineData("123.45", "ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS")]
+    [InlineData("133.50", "ONE HUNDRED AND THIRTY-THREE DOLLARS AND FIFTY CENTS")]
+    [InlineData("143.3", "ONE HUNDRED AND FORTY-THREE DOLLARS AND THIRTY CENTS")]
     public void ConvertToWords_ValidAmounts_ReturnsExpectedWords(string amount, string expected)
     {
         var result = _converter.ConvertToWords(amount);

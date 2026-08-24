@@ -17,11 +17,24 @@ public class NumberToWordsConverter : INumberToWordsConverter
         {
             return "ZERO DOLLARS AND ZERO CENTS";
         }
+        
+        var parts = amount.Split('.');
+        var dollars = int.Parse(parts[0]);
+        var cents = 0;
+        if (parts.Length > 1)
+        {
+            string centsPart = parts[1];
+            if (centsPart.Length == 1)
+            {
+                centsPart += "0";
+            }
+            cents = int.Parse(centsPart);
+        }
+        
+        var dollarWords = ConvertThreeDigits(dollars);
+        var centsWords = ConvertTwoDigits(cents);
 
-        int dollars = int.Parse(amount);
-        string dollarWords = ConvertThreeDigits(dollars);
-
-        return $"{dollarWords} DOLLARS AND ZERO CENTS";
+        return $"{dollarWords} DOLLARS AND {centsWords} CENTS";
     }
 
     private string ConvertTwoDigits(int number)
@@ -30,9 +43,9 @@ public class NumberToWordsConverter : INumberToWordsConverter
         {
             return Ones[number];
         }
-        int tensDigit = number / 10;
-        int digit = number % 10;
-        return $"{Tens[tensDigit]} {Ones[digit]}";
+        var tensDigit = number / 10;
+        var digit = number % 10;
+        return digit == 0 ? Tens[tensDigit] : $"{Tens[tensDigit]}-{Ones[digit]}";
     }
     
     private string ConvertThreeDigits(int number)
@@ -41,8 +54,8 @@ public class NumberToWordsConverter : INumberToWordsConverter
         {
             return ConvertTwoDigits(number);
         }
-        int hundredsDigit = number / 100;
-        int remainder = number % 100;
+        var hundredsDigit = number / 100;
+        var remainder = number % 100;
         string hundredsWords = $"{Ones[hundredsDigit]} HUNDRED";
         return remainder == 0 ? hundredsWords : $"{hundredsWords} AND {ConvertTwoDigits(remainder)}";
     }
