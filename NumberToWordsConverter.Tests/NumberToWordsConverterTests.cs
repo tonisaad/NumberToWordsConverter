@@ -24,6 +24,7 @@ public class NumberToWordsConverterTests
     [InlineData("10.456", "TEN DOLLARS AND FORTY-FIVE CENTS")]
     [InlineData("143.3", "ONE HUNDRED AND FORTY-THREE DOLLARS AND THIRTY CENTS")]
     [InlineData("1234", "ONE THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND ZERO CENTS")]
+    [InlineData("1000000.0", "ONE MILLION DOLLARS AND ZERO CENTS")]
     public void ConvertToWords_ValidAmounts_ReturnsExpectedWords(string amount, string expected)
     {
         //act

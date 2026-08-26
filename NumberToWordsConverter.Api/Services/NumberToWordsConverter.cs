@@ -2,11 +2,12 @@
 
 public class NumberToWordsConverter : INumberToWordsConverter
 {
-    private static readonly string[] Ones = {
+    private static readonly string[] Ones =
+    [
         "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE",
         "TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN",
         "SEVENTEEN", "EIGHTEEN", "NINETEEN"
-    };
+    ];
     private static readonly string[] Tens = {
         "", "", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"
     };
