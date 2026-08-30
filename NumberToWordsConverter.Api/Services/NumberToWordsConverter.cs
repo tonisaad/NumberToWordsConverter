@@ -14,6 +14,17 @@ public class NumberToWordsConverter : INumberToWordsConverter
     
     private static readonly string[] ScaleWords = { "", "THOUSAND", "MILLION", "BILLION" };
     
+    /// <summary>
+    /// Converts a numeric dollar amount to uppercase words.
+    /// </summary>
+    /// <param name="amount">The dollar amount to convert, such as <c>123.45</c>.</param>
+    /// <returns>
+    /// The amount formatted as words, using the pattern
+    /// <c>[dollars] DOLLARS AND [cents] CENTS</c>.
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown when <paramref name="amount"/> is not a valid numeric value.
+    /// </exception>
     public string ConvertToWords(string amount)
     {
         if (amount == "0")
